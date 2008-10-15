@@ -30,9 +30,20 @@ label.check, label.radio {
   text-align: center; }
 
 textarea {
-  width: 400px;
+  width: 300px;
   height: 200px; }
 
 
-div.content-header {
+div.content-header, div.content-footer {
   text-align: center; }
+
+
+div.yui-b#nav-list {
+  text-align: center;
+  background-color: #ccc; }
+
+
+div.yui-b {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  min-height: 200px; }
