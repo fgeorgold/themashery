@@ -1,9 +1,12 @@
-%h1 New Batch
+.content-header
+  %h1 New Batch
 
 = error_messages_for :batch
 
-= form_for(@batch, :action => url(:batches) ) do
-  = partial :form
-  = submit "Create"
+.content-body
+  = form_for(@batch, :action => url(:batches) ) do
+    = partial :form
+    = submit "Create"
 
-= link_to 'Back', url(:batches)
+.content-footer
+  = link_to 'Back', url(:batches)
