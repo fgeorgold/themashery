@@ -1,16 +1,19 @@
-%h1
-  Batches controller, index action
-%p
-  Edit this file in
-  %tt
-    app/views/batches/index.html.erb
-%table
-  %tr
-  - for batch in @batches
-    %tr
-      %td
-        = link_to 'Show', url(:batch, batch)
-      %td
-        = link_to 'Edit', url(:edit_batch,  batch)
+.content-header
+  %h1 Batches
 
-= link_to 'New', url(:new_batch)
+.content-body
+  %table
+    %tr
+    - for batch in @batches
+      %tr
+        %td
+          = batch.recipe.title
+        %td
+          = batch.started_on
+        %td
+          = link_to 'Show', url(:batch, batch)
+        %td
+          = link_to 'Edit', url(:edit_batch,  batch)
+
+.content-footer
+  = link_to 'New', url(:new_batch)
