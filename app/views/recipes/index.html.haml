@@ -9,9 +9,9 @@
         %td
           = recipe.title
         %td
-          = link_to 'Show', resource(:recipes, recipe)
+          = link_to 'Show', resource(recipe)
         %td
-          = link_to 'Edit', resource(:edit_recipe,  recipe)
+          = link_to 'Edit', resource(recipe, :edit)
 
 .content-footer
   = link_to 'New', url(:new_recipe)
