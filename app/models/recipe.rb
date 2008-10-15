@@ -4,8 +4,8 @@ class Recipe
   property :id, Serial
   
   property :title, String, :nullable => false
-  property :ingredients, Text
-  property :notes, Text
+  property :ingredients, Text, :default => ""
+  property :notes, Text, :default => ""
   
   belongs_to :user
   
