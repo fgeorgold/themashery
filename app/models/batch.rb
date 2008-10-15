@@ -2,7 +2,8 @@ class Batch
   include DataMapper::Resource
   
   property :id, Serial
-  property :created_on, Date
+  property :started_on, Date, :nullable => false
+  property :notes, Text, :default => ""
 
   belongs_to :user
   belongs_to :recipe
