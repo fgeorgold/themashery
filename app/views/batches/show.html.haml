@@ -1,10 +1,14 @@
-%h1
-  Batches controller, show action
-%p
-  Edit this file in
-  %tt
-    app/views/batches/show.html.erb
+.content-header
+  %h1
+    Batch from 
+    = @batch.started_on
 
-= link_to 'Edit',  url(:edit_batch,  @batch)
-|
-= link_to 'Back', url(:batches)
+.content-body
+  %p
+    Recipe: 
+    = link_to @batch.recipe.title, resource(Recipe.get(@batch.recipe_id))
+
+.content-footer
+  = link_to 'Edit',  url(:edit_batch,  @batch)
+  |
+  = link_to 'Back', url(:batches)

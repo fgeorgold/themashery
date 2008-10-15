@@ -3,9 +3,7 @@
 = error_messages_for :batch
 
 = form_for(@batch, :action => url(:batches) ) do
-  %p
-    = date_field :created_on, :label => "Started on: "
-    %br
-    = submit "Create"
+  = partial :form
+  = submit "Create"
 
 = link_to 'Back', url(:batches)

@@ -7,8 +7,6 @@
     - for batch in @batches
       %tr
         %td
-          = batch.recipe.title
-        %td
           = batch.started_on
         %td
           = link_to 'Show', url(:batch, batch)
