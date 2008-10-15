@@ -1,0 +1,24 @@
+!!! Strict
+
+- Sass::Plugin.update_stylesheets
+
+%html{ html_attrs("en_us") }
+  %head
+    %title
+      The Mashery
+    %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "content-type" }/
+    %link{ :href => "http://yui.yahooapis.com/2.6.0/build/reset-fonts-grids/reset-fonts-grids.css", :rel => "stylesheet", :type => "text/css"}/
+    = css_include_tag :master
+  %body
+    .yui-t1#doc2
+      #hd
+        The Mashery
+      #bd
+        #yui-main
+          .yui-b
+            = catch_content :for_layout
+        .yui-b
+          .nav-list
+            = partial 'layout/navigation'
+      #ft
+        = partial 'layout/footer'

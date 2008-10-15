@@ -1,0 +1,18 @@
+.content-header
+  %h1 Recipes
+
+.content-body
+  %table
+    %tr
+    - for recipe in @recipes
+      %tr
+        %td
+          = recipe.title
+        %td
+          = link_to 'Show', resource(:recipes, recipe)
+        %td
+          = link_to 'Edit', resource(:edit_recipe,  recipe)
+
+.content-footer
+  = link_to 'New', url(:new_recipe)
+
