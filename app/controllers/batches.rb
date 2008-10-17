@@ -1,6 +1,12 @@
 class Batches < Application
   # provides :xml, :yaml, :js
 
+  before :ensure_authorized
+  
+  def model_class
+    Batch
+  end
+
   def index
     @batches = Batch.all
     display @batches
@@ -27,6 +33,7 @@ class Batches < Application
 
   def create(batch)
     @batch = Batch.new(params[:batch])
+    @batch.user_id = @user.id
     if @batch.save
       redirect resource(@batch), :message => {:notice => "Batch was successfully created"}
     else

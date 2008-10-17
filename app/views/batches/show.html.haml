@@ -9,6 +9,5 @@
     = link_to @batch.recipe.title, resource(Recipe.get(@batch.recipe_id))
 
 .content-footer
-  = link_to 'Edit',  url(:edit_batch,  @batch)
-  |
+  = add_separator_if(edit_link(@batch))
   = link_to 'Back', url(:batches)

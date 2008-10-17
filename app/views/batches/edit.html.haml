@@ -9,6 +9,5 @@
     = submit "Update"
 
 .content-footer
-  = link_to 'Show', url(:batch, @batch)
-  |
+  = add_separator_if(show_link(@batch))
   = link_to 'Back', url(:batches)

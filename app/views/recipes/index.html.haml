@@ -4,15 +4,17 @@
 .content-body
   %table
     %tr
+      %th Recipes
+      %th Brewer
     - for recipe in @recipes
       %tr
         %td
           = recipe.title
         %td
-          = link_to 'Show', resource(recipe)
+          = recipe.user
         %td
-          = link_to 'Edit', resource(recipe, :edit)
-
+          = show_link recipe
+          
 .content-footer
-  = link_to 'New', url(:new_recipe)
+  = new_link :recipes
 

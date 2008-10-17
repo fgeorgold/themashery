@@ -15,6 +15,5 @@
         = @recipe.notes
 
 .content-footer
-  = link_to 'Edit',  url(:edit_recipe,  @recipe)
-  |
+  = add_separator_if(edit_link (@recipe))
   = link_to 'Back', url(:recipes)

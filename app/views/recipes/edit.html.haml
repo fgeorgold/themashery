@@ -10,6 +10,5 @@
     = submit "Update"
 
 .content-footer
-  = link_to 'Show', url(:recipe, @recipe)
-  |
-  = link_to 'Back', url(:recipes)
+  = add_separator_if show_link(@recipe)
+  = link_to 'Back', resource(:recipes)

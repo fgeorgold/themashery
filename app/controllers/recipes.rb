@@ -1,12 +1,19 @@
 class Recipes < Application
   # provides :xml, :yaml, :js
 
+  before :ensure_authorized
+
+  def model_class
+    Recipe
+  end
+
   def index
     @recipes = Recipe.all
     display @recipes
   end
 
   def show(id)
+    puts 'Recipes::show'
     @recipe = Recipe.get(id)
     raise NotFound unless @recipe
     display @recipe
@@ -27,6 +34,7 @@ class Recipes < Application
 
   def create(recipe)
     @recipe = Recipe.new(recipe)
+    @recipe.user_id = @user.id
     if @recipe.save
       redirect resource(@recipe), :message => {:notice => "Recipe was successfully created"}
     else

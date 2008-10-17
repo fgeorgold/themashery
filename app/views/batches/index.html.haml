@@ -4,14 +4,19 @@
 .content-body
   %table
     %tr
+      %th Recipe
+      %th Date
+      %th Brewer
     - for batch in @batches
       %tr
         %td
+          = batch.recipe.title
+        %td
           = batch.started_on
         %td
-          = link_to 'Show', url(:batch, batch)
+          = batch.user
         %td
-          = link_to 'Edit', url(:edit_batch,  batch)
-
+          = show_link batch
+          
 .content-footer
-  = link_to 'New', url(:new_batch)
+  = new_link :batches

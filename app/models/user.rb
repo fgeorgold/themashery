@@ -11,11 +11,16 @@
 class User
   include DataMapper::Resource
   
-  property :id,     Serial
-  property :login,  String
-  property :email, String, :nullable => false
+  property :id,       Serial
+  property :login,    String
+  property :email,    String, :nullable => false
+  property :is_admin, Boolean, :default => false
   
   has n, :recipes
   has n, :batches
+  
+  def to_s
+    login
+  end
   
 end
