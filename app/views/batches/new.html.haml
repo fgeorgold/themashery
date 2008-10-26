@@ -1,0 +1,13 @@
+%h1 Batches controller, new action
+
+%p 
+  Edit this file in 
+  %tt app/views/batches/new.html.erb
+
+= error_messages_for :batch
+
+= form_for(@batch, :action => url(:batches) ) do
+  %p
+    = submit "Create"
+
+= link_to 'Back', url(:batches)

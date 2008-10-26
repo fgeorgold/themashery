@@ -27,8 +27,12 @@
 
 Merb.logger.info("Compiling routes...")
 Merb::Router.prepare do
-  # RESTful routes
-  # resources :posts
+  resources :batches
+  resources :recipes
+  
+  match("/").to(:controller => "front")
+  match("/signup", :method => :get).to(:controller => "users", :action => "new").name(:signup)
+  match("/signup", :method => :put).to(:controller => "users", :action => "create")
   
   # Adds the required routes for merb-auth using the password slice
   slice(:merb_auth_slice_password, :name_prefix => nil, :path_prefix => "")

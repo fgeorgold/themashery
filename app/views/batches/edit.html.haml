@@ -1,0 +1,15 @@
+%h1
+  Batches controller, edit action
+%p
+  Edit this file in
+  %tt
+    app/views/batches/edit.html.erb
+= error_messages_for :batch
+
+= form_for(@batch, :action => url(:batch, @batch)) do
+  %p
+    = submit "Update"
+
+= link_to 'Show', url(:batch, @batch)
+|
+= link_to 'Back', url(:batches)
