@@ -27,16 +27,11 @@
 
 Merb.logger.info("Compiling routes...")
 Merb::Router.prepare do
-  resources :yeasts
-  resources :adjuncts
-  resources :hops
-  resources :fermentables
-  
+  resources :ingredients
   resources :batches
   resources :recipes
   
   match("/").to(:controller => "front")
-  match("/").to(:controller => "ingredients").name(:ingredients)
   match("/signup", :method => :get).to(:controller => "users", :action => "new").name(:signup)
   match("/signup", :method => :put).to(:controller => "users", :action => "create")
   

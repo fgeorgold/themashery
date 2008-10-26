@@ -1,11 +1,16 @@
-.content-header
-  %h1 Ingredients
-  
-.content-body
-  = link_to "Fermentables", resource(:fermentables)
-  %br
-  = link_to "Hops", resource(:hops)
-  %br
-  = link_to "Adjuncts", resource(:adjuncts)
-  %br
-  = link_to "Yeasts", resource(:yeasts)
+%h1
+  Ingredients controller, index action
+%p
+  Edit this file in
+  %tt
+    app/views/ingredients/index.html.erb
+%table
+  %tr
+  - for ingredient in @ingredients
+    %tr
+      %td
+        = link_to 'Show', url(:ingredient, ingredient)
+      %td
+        = link_to 'Edit', url(:edit_ingredient,  ingredient)
+
+= link_to 'New', url(:new_ingredient)
