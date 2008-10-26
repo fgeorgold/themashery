@@ -29,6 +29,7 @@ class Recipes < Application
 
   def create(recipe)
     @recipe = Recipe.new(recipe)
+    @recipe.user_id = session.user.id if session.authenticated?
     if @recipe.save
       redirect resource(@recipe), :message => {:notice => "Recipe was successfully created"}
     else

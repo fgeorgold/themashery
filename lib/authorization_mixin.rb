@@ -3,12 +3,19 @@ module AuthorizationMixin
   # Neato stuff huh
 
   class ::Merb::Controller::NotAllowed < ::Merb::ControllerExceptions::MethodNotAllowed; end
+  
+  class Role
+    Guest = 0
+    User = 1
+    Owner = 2
+    Admin = 3
+  end
 
   # roles and actions are separated out
   # for convenience in the controller
   # we won't always want to change both
   def model_class
-    Object.full_const_get(self.name.singular)
+    Object.full_const_get(self.controller_name.camel_case.singular)
   end
   
   def role_for_object(user, object_id = nil)

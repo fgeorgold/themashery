@@ -1,15 +1,13 @@
-%h1
-  Batches controller, edit action
-%p
-  Edit this file in
-  %tt
-    app/views/batches/edit.html.erb
+.content-header
+  %h1 Edit Batch
+
 = error_messages_for :batch
 
-= form_for(@batch, :action => url(:batch, @batch)) do
-  %p
+.content-body
+  = form_for(@batch, :action => url(:batch, @batch)) do
+    partial :form
     = submit "Update"
 
-= link_to 'Show', url(:batch, @batch)
-|
-= link_to 'Back', url(:batches)
+.content-footer
+  = add_separator_if(show_link(@batch))
+  = link_to 'Back', url(:batches)

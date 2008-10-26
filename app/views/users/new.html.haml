@@ -1,15 +1,19 @@
-%h1 Sign Up
+.content-header
+  %h1 Sign Up
+  
+- require_css :form
  
 = error_messages_for :user
- 
-= form_for(@user, :action => "/signup", :method => :put) do
-  %p
-    = text_field :login, :label => "Login: "
-    %br
-    = text_field :email, :label => "E-Mail: "
-    %br
-    = password_field :password, :label => "Password: "
-    %br
-    = password_field :password_confirmation, :label => "Confirm: "
-    %br
-    = submit "Sign Up"
+
+.content-body
+  = form_for(@user, :action => "/signup", :method => :put) do
+    %p
+      = text_field :login, :label => "Login: "
+      %br
+      = text_field :email, :label => "E-Mail: "
+      %br
+      = password_field :password, :label => "Password: "
+      %br
+      = password_field :password_confirmation, :label => "Confirm: "
+      %br
+      = submit "Sign Up"

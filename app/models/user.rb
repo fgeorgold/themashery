@@ -19,4 +19,8 @@ class User
   has n, :recipes
   has n, :batches
   
+  def name
+    login
+  end
+  
 end

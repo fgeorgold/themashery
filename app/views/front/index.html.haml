@@ -1,1 +1,12 @@
-You're in index of the Front controller.
+- if message.is_a?(Hash)
+  %table
+    %tr
+    - message.each do |key, value|
+      %tr
+        %td
+          = key
+          \:
+        %td= value
+- else
+  Message: 
+  = message

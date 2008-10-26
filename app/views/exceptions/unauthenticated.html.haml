@@ -1,0 +1,14 @@
+.content-header
+  %h1 Login
+
+- require_css :form
+
+= error_messages_for session.authentication
+
+.content-body
+  = form :action => slice_url(:merb_auth_slice_password, :perform_login), :method => :put do
+    = text_field :login, :label => "Login: "
+    %br
+    = password_field :password, :label => "Password: "
+    %br
+    = submit "Log In"

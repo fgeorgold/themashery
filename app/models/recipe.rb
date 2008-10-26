@@ -3,7 +3,7 @@ class Recipe
   
   property :id, Serial
 
-  property :title, String
+  property :title, String, :nullable => false
   property :notes, Text
   
   belongs_to :user

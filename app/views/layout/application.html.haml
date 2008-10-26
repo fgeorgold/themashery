@@ -1,9 +1,29 @@
 !!! Strict
+
+- Sass::Plugin.update_stylesheets
+
 %html{ html_attrs("en_us") }
   %head
     %title
-      Fresh Merb App
+      The Mashery
     %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "content-type" }/
-    %link{ :href => "/stylesheets/master.css", :rel => "stylesheet", :media => "screen", :type => "text/css", :charset => "utf-8" }/
+    = css_include_tag :"reset-fonts-grids"
+    = css_include_tag :master
+    = include_required_js
+    = include_required_css
+    %script
+      = jquery
   %body
-    = catch_content :for_layout
+    .yui-t1#doc2
+      #hd
+        The Mashery
+      #bd
+        #yui-main
+          .yui-b
+            .yui-g
+              .content
+                = catch_content :for_layout
+        .yui-b#nav-list
+          = partial 'layout/navigation'
+      #ft
+        = partial 'layout/footer'
