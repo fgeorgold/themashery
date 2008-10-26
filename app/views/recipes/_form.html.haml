@@ -1,6 +1,14 @@
 - require_css :form
+- require_js :jquery
+- require_js :ingredient_list
+
+- @fermentables = @recipe.fermentable_assignments
 
 .form-content
   = text_field :title, :label => "Title: "
+  %br
+  .ingredients#fermentables
+    = select :label => "Fermentables: ", :collection = Fermentable.all, :value_method => :id, :text_method => :name, :id => "ingredient"
+    = select :collection => %w(lbs kg), :class => "hidden", :id => "units"
   %br
   = text_area :notes, :label => "Notes: "

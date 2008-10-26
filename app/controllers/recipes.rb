@@ -57,5 +57,41 @@ class Recipes < Application
       raise InternalServerError
     end
   end
+  
+  def update_ingredients(recipe, ingredients)
+    if !ingredients
+      return
+    end
+    
+    ingredients.each do |key, list|
+      case key
+      when "fermentables":
+        @assignments = recipe.fermentable_assignments
+        @ingredient_id = :fermentable_id
+      when "hops":
+        @assignments = recipe.hop_assignments
+        @ingredient_id = :hop_id
+      when "adjuncts":
+        @assignments = recipe.adjunct_assignments
+        @ingredient_id = :adjunct_id
+      end
+      
+      if @assignments
+        list.each_value do |value|
+          value[@ingredient_id] = value[:ingredient_id]
+          value.delete :ingredient_id
+          if ingredient[:id]
+            if ingredient[:quantity] == nil || ingredient[:quantity].to_f == 0
+              @assignments.get(value[:id]).destroy
+            else
+              @assignments.get(value[:id]).update_attributes(value)
+            end
+          else
+            @assignments.create(value)
+          end
+        end
+      end
+    end
+  end
 
 end # Recipes
