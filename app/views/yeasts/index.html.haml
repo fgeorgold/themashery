@@ -1,0 +1,16 @@
+.content-header
+  %h1 Yeast
+
+.content-body
+  %table
+    %tr
+      %th Yeast
+    - for yeast in @yeasts
+      %tr
+        %td
+          = yeast.name
+        %td
+          = show_link yeast
+          
+.content-footer
+  = new_link :yeasts

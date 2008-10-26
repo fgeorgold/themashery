@@ -27,10 +27,16 @@
 
 Merb.logger.info("Compiling routes...")
 Merb::Router.prepare do
+  resources :yeasts
+  resources :adjuncts
+  resources :hops
+  resources :fermentables
+  
   resources :batches
   resources :recipes
   
   match("/").to(:controller => "front")
+  match("/").to(:controller => "ingredients").name(:ingredients)
   match("/signup", :method => :get).to(:controller => "users", :action => "new").name(:signup)
   match("/signup", :method => :put).to(:controller => "users", :action => "create")
   
@@ -41,7 +47,8 @@ Merb::Router.prepare do
   # This is fine for most cases.  If you're heavily using resource-based
   # routes, you may want to comment/remove this line to prevent
   # clients from calling your create or destroy actions with a GET
-  default_routes
+  
+  # default_routes
   
   # Change this for your home page to be available at /
   # match('/').to(:controller => 'whatever', :action =>'index')

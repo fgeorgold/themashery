@@ -1,0 +1,8 @@
+.content-header
+  %h1= @fermentable.name
+
+.content-body
+
+.content-footer
+  = add_separator_if(edit_link (@fermentable))
+  = link_to 'Back', url(:fermentables)

@@ -1,0 +1,14 @@
+.content-header
+  %h1 Edit Adjunct
+
+= error_messages_for @adjunct
+
+.content-body
+  = form_for(@adjunct, :action => url(:adjunct, @adjunct)) do
+    = partial :form
+    %br
+    = submit "Update"
+
+.content-footer
+  = add_separator_if show_link(@adjunct)
+  = link_to 'Back', resource(:adjuncts)

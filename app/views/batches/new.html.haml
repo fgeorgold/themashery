@@ -1,7 +1,7 @@
 .content-header
   %h1 New Batch
 
-= error_messages_for :batch
+= error_messages_for @batch
 
 .content-body
   = form_for(@batch, :action => url(:batches) ) do

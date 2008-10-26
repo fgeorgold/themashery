@@ -1,7 +1,7 @@
 .content-header
   %h1 New recipe
 
-= error_messages_for :recipe
+= error_messages_for @recipe
 
 .content-body
   = form_for(@recipe, :action => resource(:recipes)) do

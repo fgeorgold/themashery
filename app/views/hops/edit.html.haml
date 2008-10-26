@@ -1,0 +1,14 @@
+.content-header
+  %h1 Edit Hops
+
+= error_messages_for @hop
+
+.content-body
+  = form_for(@hop, :action => url(:hop, @hop)) do
+    = partial :form
+    %br
+    = submit "Update"
+
+.content-footer
+  = add_separator_if show_link(@hop)
+  = link_to 'Back', resource(:hops)
