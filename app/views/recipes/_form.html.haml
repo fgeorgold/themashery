@@ -4,11 +4,23 @@
 
 - @fermentables = @recipe.fermentable_assignments
 
+- jquery do
+  :plain
+    $(document).ready(function() {
+      ingredient_list($(".ingredients#fermentables"));
+    })
+
 .form-content
   = text_field :title, :label => "Title: "
   %br
   .ingredients#fermentables
-    = select :label => "Fermentables: ", :collection = Fermentable.all, :value_method => :id, :text_method => :name, :id => "ingredient"
+    = select :label => "Fermentables: ", :collection => Fermentable.all, :value_method => :id, :text_method => :name, :id => "ingredient"
     = select :collection => %w(lbs kg), :class => "hidden", :id => "units"
+    - @fermentables.each do |f|
+      %id= f.id.to_s
+      %ingredient= f.fermentable_id.to_s
+      %quantity= f.quantity.to_s
+      %units= f.units.to_s
+      %name= f.fermentable.name.to_s
   %br
   = text_area :notes, :label => "Notes: "

@@ -2,14 +2,9 @@ module AuthorizationMixin
   # This is all stuff for authorization
   # Neato stuff huh
 
-  class ::Merb::Controller::NotAllowed < ::Merb::ControllerExceptions::MethodNotAllowed; end
   
-  class Role
-    Guest = 0
-    User = 1
-    Owner = 2
-    Admin = 3
-  end
+  
+  
 
   # roles and actions are separated out
   # for convenience in the controller
@@ -48,24 +43,41 @@ module AuthorizationMixin
   def actions_for_user(user, object_id = nil)
     actions_for_role(role_for_object(user, object_id))
   end
-
-  protected
-  def ensure_authorized
   
-    if session.authenticated?
-      @user = session.user
+  # these are a couple of link helpers that should be useful
+  def auth_link(args = {})
+    if args[:resource].is_a?(Symbol)
+      controller = args[:controller] || args[:resource].to_s
+      object = nil
+      requested_action = args[:action] || :index
+    elsif args[:resource]
+      controller = args[:controller] || args[:resource].class.to_s.snake_case.plural
+      object = args[:resource]
+      requested_action = args[:action] || :show
+    elsif args[:controller]
+      controller = args[:controller]
+      object = nil
+      requested_action = args[:action] || :index
     else
-      @user = nil
+      return nil
     end
-  
-    allowed_actions = actions_for_user(@user, params[:id])
-  
-    if !(allowed_actions.include?(params[:action].to_sym) || allowed_actions.include?(:all))
-      if @user
-        raise Merb::Controller::NotAllowed
+    controller_class = Object.full_const_get(controller.camel_case)
+    role = controller_class.role_for_object(@user, object)
+    actions = controller_class.actions_for_role(role)
+    text = args[:text] || requested_action.to_s.camel_case
+    
+    if actions.include?(requested_action)
+      if object
+        link_to text, resource(object, requested_action)
       else
-        raise Merb::Controller::Unauthenticated
+        link_args = {:controller => controller, :action => requested_action}
+        link_args[:id] = args[:id] if args[:id]
+        link_to text, url(link_args)
       end
+    else
+      return nil
     end
   end
+
+
 end
