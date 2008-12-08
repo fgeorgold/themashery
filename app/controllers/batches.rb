@@ -1,8 +1,6 @@
 class Batches < Application
   # provides :xml, :yaml, :js
 
-  before :ensure_authorized
-
   def index
     @batches = Batch.all
     display @batches

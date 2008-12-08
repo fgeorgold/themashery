@@ -13,7 +13,7 @@
         %td
           = recipe.user.name
         %td
-          = show_link recipe
+          = link_to "Show", resource(recipe)
           
 .content-footer
-  = auth_link (:resource => :recipes, :action => :new)
+  = link_to "New Recipe", resource(:recipes, :new)
