@@ -11,6 +11,8 @@
 class User
   include DataMapper::Resource
   
+  authorizable!
+  
   property :id,     Serial
   property :login,  String, :nullable => false
   property :email, String, :nullable => false

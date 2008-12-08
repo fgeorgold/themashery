@@ -28,6 +28,11 @@
 Merb.logger.info("Compiling routes...")
 Merb::Router.prepare do
   resources :ingredients
+  resources :fermentables, :controller => "Ingredients"
+  resources :hops, :controller => "Ingredients"
+  resources :yeasts, :controller => "Ingredient"
+  resources :adjuncts, :controller => "Ingredients"
+  
   resources :batches
   resources :recipes
   

@@ -1,15 +1,17 @@
-%h1
-  Ingredients controller, edit action
-%p
-  Edit this file in
-  %tt
-    app/views/ingredients/edit.html.erb
-= error_messages_for :ingredient
+.content-header
+  %h1
+    Edit 
+    = @ingredient.type
 
-= form_for(@ingredient, :action => url(:ingredient, @ingredient)) do
-  %p
-    = submit "Update"
+  = error_messages_for :ingredient
 
-= link_to 'Show', url(:ingredient, @ingredient)
-|
-= link_to 'Back', url(:ingredients)
+.content-body
+  = form_for(@ingredient, :action => resource(@ingredient)) do
+    %p
+      = partial :form
+      = submit "Update"
+
+.content-footer
+  = link_to 'Show', resource(@ingredient)
+  |
+  = link_to 'Back', resource(:ingredients)

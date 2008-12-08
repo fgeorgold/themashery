@@ -1,10 +1,13 @@
-%h1
-  Ingredients controller, show action
-%p
-  Edit this file in
-  %tt
-    app/views/ingredients/show.html.erb
+.content-header
+  %h1
+    Ingredient
 
-= link_to 'Edit',  url(:edit_ingredient,  @ingredient)
-|
-= link_to 'Back', url(:ingredients)
+.content-body
+  %p
+    Name:
+    = @ingredient.name
+
+.content-footer
+  = link_to 'Edit', resource(@ingredient, :edit)
+  |
+  = link_to 'Back', resource(:ingredients)

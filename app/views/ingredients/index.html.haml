@@ -1,16 +1,18 @@
-%h1
-  Ingredients controller, index action
-%p
-  Edit this file in
-  %tt
-    app/views/ingredients/index.html.erb
-%table
-  %tr
-  - for ingredient in @ingredients
-    %tr
-      %td
-        = link_to 'Show', url(:ingredient, ingredient)
-      %td
-        = link_to 'Edit', url(:edit_ingredient,  ingredient)
+.content-header
+  %h1
+    Ingredients
 
-= link_to 'New', url(:new_ingredient)
+.content-body
+  %table
+    %tr
+      %th Ingredient
+      %th Type
+    - for ingredient in @ingredients
+      %tr
+        %td
+          = link_to ingredient.name, resource(ingredient)
+        %td
+          = ingredient.type
+
+.content-footer
+  = link_to 'New', resource(:ingredients, :new)

@@ -1,13 +1,14 @@
-%h1 Ingredients controller, new action
+.content-header
+  %h1
+    New Ingredient
+    
+  = error_messages_for :ingredient
 
-%p 
-  Edit this file in 
-  %tt app/views/ingredients/new.html.erb
+.content-body
+  = form_for(@ingredient, :action => resource(:ingredients)) do
+    %p
+      = partial :form
+      = submit "Create"
 
-= error_messages_for :ingredient
-
-= form_for(@ingredient, :action => url(:ingredients) ) do
-  %p
-    = submit "Create"
-
-= link_to 'Back', url(:ingredients)
+.content-footer
+  = link_to 'Back', resource(:ingredients)
