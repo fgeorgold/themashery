@@ -35,10 +35,10 @@ class Ingredients < Application
     end
   end
 
-  def update(id, ingredient)
-    @ingredient = Ingredient.get(id)
+  def update
+    @ingredient = Ingredient.get(params[:id])
     raise NotFound unless @ingredient
-    if @ingredient.update_attributes(ingredient)
+    if @ingredient.update_attributes(ingredient_params)
        redirect resource(@ingredient)
     else
       display @ingredient, :edit
@@ -54,5 +54,20 @@ class Ingredients < Application
       raise InternalServerError
     end
   end
+  
+  private
+  def ingredient_params
+    if params.include?(:hop)
+      params[:hop]
+    elsif params.include?(:fermentable)
+      params[:fermentable]
+    elsif params.include?(:yeast)
+      params[:yeast]
+    elsif params.include?(:adjunct)
+      params[:adjunct]
+    else
+      raise BadRequest
+    end
+  end  
 
 end # Ingredients
