@@ -2,6 +2,8 @@
  
 require 'config/dependencies.rb'
 require 'merb_jquery'
+require 'merb-authz'
+require 'lib/policies'
  
 use_orm :datamapper
 use_test :rspec
