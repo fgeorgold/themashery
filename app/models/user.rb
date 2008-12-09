@@ -20,9 +20,14 @@ class User
   
   has n, :recipes
   has n, :batches
+  has n, :ingredients
   
   def name
     login
+  end
+  
+  def admin?
+    is_admin
   end
   
 end

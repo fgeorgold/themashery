@@ -1,5 +1,7 @@
 class Ingredients < Application
   # provides :xml, :yaml, :js
+  
+  authorize_crud_resource Ingredient
 
   def index
     @ingredients = Ingredient.all
@@ -27,6 +29,7 @@ class Ingredients < Application
 
   def create(ingredient)
     @ingredient = Ingredient.new(ingredient)
+    @ingredient.user_id = session.user.id if session.authenticated?
     if @ingredient.save
       redirect resource(@ingredient), :message => {:notice => "Ingredient was successfully created"}
     else
@@ -68,6 +71,12 @@ class Ingredients < Application
     else
       raise BadRequest
     end
-  end  
+  end 
+  
+  def find_member
+    @ingredient = Ingredient.get(params[:id])
+    raise NotFound unless @ingredient
+    @ingredient
+  end
 
 end # Ingredients
