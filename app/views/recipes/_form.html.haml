@@ -3,6 +3,8 @@
 - require_js :ingredient_list
 
 - @fermentables = @recipe.fermentable_assignments
+- @hops = @recipe.hop_assignments
+- @adjuncts = @recipe.adjunct_assignments
 
 - jquery do
   :plain
@@ -14,13 +16,14 @@
   = text_field :title, :label => "Title: "
   %br
   .ingredients#fermentables
-    = select :label => "Fermentables: ", :collection => Fermentable.all, :value_method => :id, :text_method => :name, :id => "ingredient"
+    = select :label => "Fermentables: ", :collection => Fermentable.all, :value_method => :id, :text_method => :name, :id => "ingredient", :prompt => "Select a fermentable..."
     = select :collection => %w(lbs kg), :class => "hidden", :id => "units"
     - @fermentables.each do |f|
-      %id= f.id.to_s
-      %ingredient= f.fermentable_id.to_s
-      %quantity= f.quantity.to_s
-      %units= f.units.to_s
-      %name= f.fermentable.name.to_s
+      .ingredient
+        %id= f.id.to_s
+        %ingredient= f.ingredient_id.to_s
+        %quantity= f.quantity.to_s
+        %units= f.units.to_s
+        %name= f.fermentable.name.to_s
   %br
   = text_area :notes, :label => "Notes: "
