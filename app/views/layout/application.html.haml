@@ -22,6 +22,12 @@
           .yui-b
             .yui-g
               .content
+                .content-message
+                  - (message || {}).each do |key, value|
+                    %p
+                      = key.to_s.capitalize
+                      \:
+                      = value
                 = catch_content :for_layout
         .yui-b#nav-list
           = partial 'layout/navigation'
