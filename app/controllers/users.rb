@@ -11,7 +11,7 @@ class Users < Application
   def create
     @user = User.new(params[:user])
     if @user.save
-      redirect '/', :message => {:notice => "Welcome to The Mashery"}
+      redirect '/login', :message => {:notice => "Welcome to The Mashery"}
     else
       render :new
     end
