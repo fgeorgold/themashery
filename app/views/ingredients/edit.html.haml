@@ -3,7 +3,7 @@
     Edit 
     = @ingredient.type
 
-  = error_messages_for :ingredient
+  = error_messages_for @ingredient
 
 .content-body
   = form_for(@ingredient, :action => resource(@ingredient)) do
@@ -12,6 +12,6 @@
       = submit "Update"
 
 .content-footer
-  = link_to 'Show', resource(@ingredient)
+  = link_to "Show", resource(@ingredient)
   |
-  = link_to 'Back', resource(:ingredients)
+  = link_to "Index", resouce(:ingredients)

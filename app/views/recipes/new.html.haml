@@ -1,5 +1,6 @@
 .content-header
-  %h1 New recipe
+  %h1 
+    New recipe
 
 = error_messages_for @recipe
 
@@ -10,4 +11,4 @@
     = submit "Create"
 
 .content-footer
-  = link_to 'Back', url(:recipes)
+  = link_to "Back", resource(:recipes)

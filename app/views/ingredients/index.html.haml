@@ -10,9 +10,15 @@
     - for ingredient in @ingredients
       %tr
         %td
-          = link_to ingredient.name, resource(ingredient)
+          = ingredient.name
         %td
           = ingredient.type
+        %td
+          = authz_show_link(ingredient)
+        %td
+          = authz_edit_link(ingredient)
+        %td
+          = authz_delete_link(ingredient, "X")
 
 .content-footer
-  = link_to 'New', resource(:ingredients, :new)
+  = authz_new_link(:ingredients, "New Ingredient")

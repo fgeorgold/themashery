@@ -2,7 +2,7 @@
   %h1
     New Ingredient
     
-  = error_messages_for :ingredient
+  = error_messages_for @ingredient
 
 .content-body
   = form_for(@ingredient, :action => resource(:ingredients)) do

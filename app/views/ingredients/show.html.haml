@@ -8,6 +8,5 @@
     = @ingredient.name
 
 .content-footer
-  = link_to 'Edit', resource(@ingredient, :edit)
-  |
+  = add_separator_if authz_edit_link(@ingredient)
   = link_to 'Back', resource(:ingredients)

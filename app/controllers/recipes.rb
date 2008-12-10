@@ -1,5 +1,6 @@
 class Recipes < Application
   # provides :xml, :yaml, :js
+  authorize_crud_resource Recipe
 
   def index
     @recipes = Recipe.all
@@ -90,6 +91,11 @@ class Recipes < Application
         end
       end
     end
+  end
+  
+  private
+  def find_member
+    Recipe.get(params[:id])
   end
 
 end # Recipes

@@ -10,4 +10,6 @@
     = submit "Update"
 
 .content-footer
-  = link_to 'Back', resource(:recipes)
+  = link_to "Show", resource(@recipe)
+  |
+  = link_to "Index", resource(:recipes)

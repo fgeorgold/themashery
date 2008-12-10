@@ -13,7 +13,11 @@
         %td
           = recipe.user.name
         %td
-          = link_to "Show", resource(recipe)
+          = authz_show_link(recipe)
+        %td
+          = authz_edit_link(recipe)
+        %td
+          = authz_delete_link(recipe, "X")
           
 .content-footer
-  = link_to "New Recipe", resource(:recipes, :new)
+  = authz_new_link(:recipes, "New Recipe")

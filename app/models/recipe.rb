@@ -19,5 +19,9 @@ class Recipe
   belongs_to :user
   
   has n, :batches
-
+  
+  authorization do
+    for_labels(:read, :create).use_policy(:user)
+    for_labels(:update, :delete).use_policies(:owner, :admin)
+  end
 end
