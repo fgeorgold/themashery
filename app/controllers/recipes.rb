@@ -30,6 +30,7 @@ class Recipes < Application
     @recipe = Recipe.new(recipe)
     @recipe.user_id = session.user.id if session.authenticated?
     if @recipe.save
+      update_ingredients(@recipe, params[:ingredients])
       redirect resource(@recipe), :message => {:notice => "Recipe was successfully created"}
     else
       message[:error] = "Recipe failed to be created"
@@ -41,7 +42,8 @@ class Recipes < Application
     @recipe = Recipe.get(id)
     raise NotFound unless @recipe
     if @recipe.update_attributes(recipe)
-       redirect resource(@recipe)
+      update_ingredients(@recipe, params[:ingredients])
+      redirect resource(@recipe)
     else
       display @recipe, :edit
     end
@@ -63,30 +65,25 @@ class Recipes < Application
     end
     
     ingredients.each do |key, list|
-      case key
+      @assignments = case key
       when "fermentables":
-        @assignments = recipe.fermentable_assignments
-        @ingredient_id = :fermentable_id
+        recipe.fermentable_assignments
       when "hops":
-        @assignments = recipe.hop_assignments
-        @ingredient_id = :hop_id
+        recipe.hop_assignments
       when "adjuncts":
-        @assignments = recipe.adjunct_assignments
-        @ingredient_id = :adjunct_id
+        recipe.adjunct_assignments
       end
       
       if @assignments
-        list.each_value do |value|
-          value[@ingredient_id] = value[:ingredient_id]
-          value.delete :ingredient_id
+        list.each_value do |ingredient|
           if ingredient[:id]
             if ingredient[:quantity] == nil || ingredient[:quantity].to_f == 0
-              @assignments.get(value[:id]).destroy
+              @assignments.get(ingredient[:id]).destroy
             else
-              @assignments.get(value[:id]).update_attributes(value)
+              @assignments.get(ingredient[:id]).update_attributes(ingredient)
             end
           else
-            @assignments.create(value)
+            @assignments.create(ingredient)
           end
         end
       end
