@@ -16,6 +16,6 @@ src/*
 .hgignore
 .hg/*
 .svn/*
-public/stylesheets/datepicker.css
-public/stylesheets/master.css
-public/stylesheets/form.css
+gems/gems/*
+gems/specifications/*
+merb_profile_results
