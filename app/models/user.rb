@@ -8,10 +8,49 @@
 # see merb/merb-auth/setup.rb to see how to disable the salted_user mixin
 # 
 # You will need to setup your database and create a user.
-class User
-  include DataMapper::Resource
+class User < CouchRest::ExtendedDocument
+  use_database SERVER.default_database
+  include CouchRest::Validation
   
-  property :id,     Serial
-  property :login,  String
+  # Callbacks
+  save_callback :before, :process_password
+  
+  # Schema
+  unique_id :user_id
+  property  :email
+  property  :salt
+  property  :crypted_password
+  
+  timestamps!
+  
+  # Views
+  view_by :email
+  
+  # Validations
+  validates_present      :email
+  validates_present      :password, :if => proc {|o| o.password_required? }
+  validates_is_confirmed :password, :if => proc {|o| o.password_required? }
+  
+  validates_length       :email,    :within => 3..100
+  validates_length       :password, :within => 4..72, :if => proc {|o| o.password_required? }
+  validates_format       :email,    :as => :email_address
+  
+  def process_password
+    if (valid? && password_required?)
+      encrypt_password
+      true
+    else
+      false
+    end
+  end
+  
+  def self.authenticate(email, password)
+    @user = User.by_email(:key => email, :limit => 1).first
+    @user && @user.authenticated?(password) ? @user : nil
+  end
+  
+  def user_id
+    "user:#{email}"
+  end
   
 end
