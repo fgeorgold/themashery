@@ -20,3 +20,4 @@ dependency "merb-param-protection", merb_gems_version
 dependency "merb-exceptions", merb_gems_version
 
 dependency "couchrest", :immediate => true
+dependency "merb_couchrest"

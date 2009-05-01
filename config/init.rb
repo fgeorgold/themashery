@@ -2,10 +2,7 @@
  
 require 'config/dependencies.rb'
 
-COUCHDB = 'themashery'
-SERVER  = CouchRest.new
-SERVER.default_database = COUCHDB
-
+use_orm :couchrest
 use_test :rspec
 use_template_engine :haml
  
