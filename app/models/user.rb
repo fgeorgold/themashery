@@ -9,7 +9,6 @@
 # 
 # You will need to setup your database and create a user.
 class User < CouchRest::ExtendedDocument
-  use_database SERVER.default_database
   include CouchRest::Validation
   
   # Callbacks
