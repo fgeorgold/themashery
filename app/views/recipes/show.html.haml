@@ -1,0 +1,15 @@
+%p
+  %b
+    Title:
+  = h @recipe.title
+%p
+  %b
+    Ingredients:
+  = h @recipe.ingredients
+%p
+  %b
+    Directions:
+  = h @recipe.directions
+= link_to 'Edit', edit_recipe_path(@recipe)
+|
+= link_to 'Back', recipes_path
