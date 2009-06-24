@@ -11,6 +11,7 @@ class BatchTest < ActiveSupport::TestCase
   end
   
   test "brew date must be today or earlier" do
+    puts batches(:brewed_tomorrow).attributes.inspect
     assert !batches(:brewed_tomorrow).save, "Batch saved with a brew date later than today"
   end
   
