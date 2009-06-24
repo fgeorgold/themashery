@@ -1,26 +1,12 @@
-%h1
-  Listing recipes
-%table
-  %tr
-    %th
-      Title
-    %th
-      Ingredients
-    %th
-      Directions
-  - @recipes.each do |recipe|
-    %tr
-      %td
-        = h recipe.title
-      %td
-        = h recipe.ingredients
-      %td
-        = h recipe.directions
-      %td
-        = link_to 'Show', recipe
-      %td
-        = link_to 'Edit', edit_recipe_path(recipe)
-      %td
-        = link_to 'Destroy', recipe, :confirm => 'Are you sure?', :method => :delete
+%h2 Recipes
+
+%ul#recipes
+  -@recipes.each do |recipe|
+    %li
+      = h recipe.title
+      = link_to 'Show', recipe
+      = link_to 'Edit', edit_recipe_path(recipe)
+      = link_to 'Delete', recipe, :confirm => 'Are you sure?', :method => :delete
+
 %br
 = link_to 'New recipe', new_recipe_path

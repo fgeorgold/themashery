@@ -1,7 +1,7 @@
 %p
   %b
     Recipe:
-  = h @batch.recipe_id
+  = link_to h(@batch.recipe.title), @batch.recipe
 %p
   %b
     Brewed on:

@@ -1,4 +1,21 @@
-.container #head
-  :text-align center
-.container #navigation
-  :text-align center
+@import compass/utilities/tables.sass
+@import compass/utilities/lists.sass
+
+.container 
+  :border black 1px solid
+  #head
+    :text-align center
+  #navigation
+    :text-align center
+
+table
+  +table-scaffolding
+  +outer-table-borders
+  +inner-table-borders
+
+textarea
+  :width 30em
+  :height 10em
+
+ul#recipes, ul#batches
+  +no-bullets
