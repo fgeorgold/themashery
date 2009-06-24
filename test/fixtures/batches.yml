@@ -1,13 +1,13 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 valid: &valid
-  recipe_id: 1
+  recipe: valid
   brewed_on: 2008-01-01
   notes: things went well
 
-no_recipe_id:
+no_recipe:
   <<: *valid
-  recipe_id: null
+  recipe: null
 
 no_brewed_on:
   <<: *valid
@@ -16,3 +16,7 @@ no_brewed_on:
 brewed_tomorrow:
   <<: *valid
   brewed_on: <%= (Date.today + 1).to_s %>
+
+invalid_recipe:
+  <<: *valid
+  recipe: no_title
