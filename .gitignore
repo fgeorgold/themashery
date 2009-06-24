@@ -16,6 +16,4 @@ src/*
 .hgignore
 .hg/*
 .svn/*
-public/stylesheets/datepicker.css
-public/stylesheets/master.css
-public/stylesheets/form.css
+public/stylesheets/*.css
