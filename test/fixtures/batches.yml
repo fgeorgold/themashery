@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  recipe_id: 1
+  brewed_on: 2009-06-24 13:37:45
+  notes: MyText
+
+two:
+  recipe_id: 1
+  brewed_on: 2009-06-24 13:37:45
+  notes: MyText

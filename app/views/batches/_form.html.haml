@@ -1,0 +1,16 @@
+- form_for(@batch) do |f|
+  = f.error_messages
+  %p
+    = f.label :recipe_id
+    %br
+    = f.text_field :recipe_id
+  %p
+    = f.label :brewed_on
+    %br
+    = f.date_select :brewed_on
+  %p
+    = f.label :notes
+    %br
+    = f.text_area :notes
+  %p
+    = f.submit 'Save'

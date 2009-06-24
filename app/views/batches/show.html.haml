@@ -1,0 +1,15 @@
+%p
+  %b
+    Recipe:
+  = h @batch.recipe_id
+%p
+  %b
+    Brewed on:
+  = h @batch.brewed_on
+%p
+  %b
+    Notes:
+  = h @batch.notes
+= link_to 'Edit', edit_batch_path(@batch)
+|
+= link_to 'Back', batches_path
