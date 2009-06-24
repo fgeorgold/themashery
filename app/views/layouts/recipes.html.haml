@@ -1,12 +1,7 @@
-!!!
-%html{ "xml:lang" => "en", :lang => "en", :xmlns => "http://www.w3.org/1999/xhtml" }
-  %head
-    %meta{ :content => "text/html;charset=UTF-8", "http-equiv" => "content-type" }
-    %title
-      Recipes:
-      = controller.action_name
-    = stylesheet_link_tag 'scaffold'
-  %body
-    %p{ :style => "color: green" }
-      = flash[:notice]
-    = yield
+- content_for :stylesheets do
+  = stylesheet_link_tag "scaffold"
+  
+- content_for :content do
+  = yield
+
+= render :file => 'layouts/application'
