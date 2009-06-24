@@ -1,11 +1,19 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  title: MyString
-  ingredients: MyText
-  directions: MyText
+valid: &valid
+  title: Tasty Lager
+  ingredients: some grains
+  directions: mash, ferment, keg
 
-two:
-  title: MyString
-  ingredients: MyText
-  directions: MyText
+no_title:
+  <<: *valid
+  title: null
+
+no_ingredients:
+  <<: *valid
+  ingredients: null
+
+no_directions:
+  <<: *valid
+  directions: null
+
