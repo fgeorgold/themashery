@@ -13,5 +13,6 @@ body .container
   #navigation
     +column(!blueprint_grid_columns)
   #content
-    +column(!blueprint_grid_columns - 2)
-    +push(1)
+    +append(2)
+    +prepend(2)
+    +column(!blueprint_grid_columns - 4)
