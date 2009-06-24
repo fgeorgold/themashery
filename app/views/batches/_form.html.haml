@@ -1,9 +1,9 @@
 - form_for(@batch) do |f|
   = f.error_messages
   %p
-    = f.label :recipe_id
+    = f.label :recipe
     %br
-    = f.text_field :recipe_id
+    = select :batch, :recipe_id, Recipe.all.collect {|r| [r.title,r.id]}
   %p
     = f.label :brewed_on
     %br

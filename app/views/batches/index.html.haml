@@ -11,7 +11,7 @@
   - @batches.each do |batch|
     %tr
       %td
-        = h batch.recipe_id
+        = link_to h(batch.recipe.title), recipe_path(batch.recipe)
       %td
         = h batch.brewed_on
       %td
