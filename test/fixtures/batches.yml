@@ -1,11 +1,18 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
+valid: &valid
   recipe_id: 1
-  brewed_on: 2009-06-24 13:37:45
-  notes: MyText
+  brewed_on: 2008-01-01
+  notes: things went well
 
-two:
-  recipe_id: 1
-  brewed_on: 2009-06-24 13:37:45
-  notes: MyText
+no_recipe_id:
+  <<: *valid
+  recipe_id: null
+
+no_brewed_on:
+  <<: *valid
+  brewed_on: null
+
+brewed_tomorrow:
+  <<: *valid
+  brewed_on: <%= (Date.today +1).to_s %>
