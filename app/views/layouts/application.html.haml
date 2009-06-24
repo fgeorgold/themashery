@@ -10,11 +10,12 @@
     = stylesheet_link_tag 'layout'
     = yield :stylesheets
   %body
-    #title
-      %h1 The Mashery
-    #navigation
-      = render :partial => 'shared/navigation'
-    #content
-      %p{ :style => "color: green" }
-        = flash[:notice]
-      = yield(:content) || yield
+    .container
+      #head
+        %h1 The Mashery
+      #navigation
+        = render :partial => 'shared/navigation'
+      #content
+        %p{ :style => "color: green" }
+          = flash[:notice]
+        = yield(:content) || yield
