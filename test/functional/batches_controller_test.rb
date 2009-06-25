@@ -17,7 +17,8 @@ class BatchesControllerTest < ActionController::TestCase
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:batches)
+    assert_not_nil assigns(:own_batches)
+    assert_not_nil assigns(:others_batches)
   end
 
   test "should get new" do

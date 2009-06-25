@@ -6,7 +6,9 @@
       %h4 My Batches:
       -@own_batches.each do |batch|
         %li
-          = h batch.title
+          = link_to h(batch.recipe.title), batch.recipe
+          started on
+          = h batch.brewed_on.to_s
           = link_to 'Show', batch
           = link_to 'Edit', edit_batch_path(batch)
           = link_to 'Delete', batch, :confirm => 'Are you sure?', :method => :delete
@@ -16,6 +18,8 @@
       %h4 Other Brewers:
       -@others_batches.each do |batch|
         %li
-          = h batch.title
+          = link_to h(batch.recipe.title), batch.recipe
+          started on
+          = h batch.brewed_on.to_s
           = link_to 'Show', batch
 

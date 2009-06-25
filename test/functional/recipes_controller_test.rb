@@ -17,7 +17,8 @@ class RecipesControllerTest < ActionController::TestCase
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:recipes)
+    assert_not_nil assigns(:own_recipes)
+    assert_not_nil assigns(:others_recipes)
   end
 
   test "should get new" do
