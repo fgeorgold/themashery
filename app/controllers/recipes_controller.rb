@@ -1,5 +1,7 @@
 class RecipesController < ApplicationController
-  before_filter :require_user
+  require_role "user", :for_all_except => [:update, :destroy]
+  require_role "admin", :for => [:update, :destroy], 
+                        :unless => "current_user.id == Recipe.find_by_id(params[:id]).user_id"
   # GET /recipes
   # GET /recipes.xml
   def index

@@ -3,7 +3,7 @@
 
 class ApplicationController < ActionController::Base
   # AuthenticatedSystem must be included for RoleRequirement, and is provided by installing acts_as_authenticates and running 'script/generate authenticated account user'.
-  include AuthenticatedSystem
+  #include AuthenticatedSystem
   # You can move this into a different controller, if you wish.  This module gives you the require_role helpers, and others.
   include RoleRequirementSystem
 
@@ -13,6 +13,18 @@ class ApplicationController < ActionController::Base
   
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user
+  
+  def logged_in?
+    current_user
+  end
+  
+  def access_denied
+    if logged_in?
+      redirect_to account_path
+    else
+      redirect_to login_path
+    end
+  end
   
   private
   def current_user_session

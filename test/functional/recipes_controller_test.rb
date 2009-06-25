@@ -46,12 +46,46 @@ class RecipesControllerTest < ActionController::TestCase
     put :update, :id => recipes(:lager).to_param, :recipe => recipes(:lager).attributes
     assert_redirected_to recipe_path(assigns(:recipe))
   end
+  
+  test "should not update recipe owned by another user" do
+    UserSession.find.destroy
+    UserSession.create(users(:bob))
+    put :update, :id => recipes(:lager).to_param, :recipe => recipes(:lager).attributes
+    assert_redirected_to account_path
+  end
+  
+  test "should always allow update by admin" do
+    UserSession.find.destroy
+    UserSession.create(users(:admin))
+    put :update, :id => recipes(:lager).to_param, :recipe => recipes(:lager).attributes
+    assert_redirected_to recipe_path(assigns(:recipe))
+  end
 
   test "should destroy recipe" do
     assert_difference('Recipe.count', -1) do
       delete :destroy, :id => recipes(:lager).to_param
     end
 
+    assert_redirected_to recipes_path
+  end
+  
+  test "should not destroy recipe owned by another user" do
+    UserSession.find.destroy
+    UserSession.create(users(:bob))
+    assert_no_difference('Recipe.count') do
+      delete :destroy, :id => recipes(:lager).to_param
+    end
+    
+    assert_redirected_to account_path
+  end
+  
+  test "should always destroy when called by admin" do
+    UserSession.find.destroy
+    UserSession.create(users(:admin))
+    assert_difference('Recipe.count', -1) do
+      delete :destroy, :id => recipes(:lager).to_param
+    end
+    
     assert_redirected_to recipes_path
   end
 end

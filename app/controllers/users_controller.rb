@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(params[:user])
+    @user.roles << Role.find_by_name("user")
     if @user.save
       flash[:notice] = "Account registered!"
       redirect_back_or_default account_url

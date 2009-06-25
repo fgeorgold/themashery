@@ -105,7 +105,7 @@ module RoleRequirementSystem
   
   module RoleSecurityInstanceMethods
     def self.included(klass)
-      raise "Because role_requirement extends acts_as_authenticated, You must include AuthenticatedSystem first before including RoleRequirementSystem!" unless klass.included_modules.include?(AuthenticatedSystem)
+      #raise "Because role_requirement extends acts_as_authenticated, You must include AuthenticatedSystem first before including RoleRequirementSystem!" unless klass.included_modules.include?(AuthenticatedSystem)
     end
     
     def render_optional_error_file(status)

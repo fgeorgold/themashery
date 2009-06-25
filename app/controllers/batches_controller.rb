@@ -1,5 +1,7 @@
 class BatchesController < ApplicationController
-  before_filter :require_user
+  require_role "user", :for_all_except => [:update, :destroy]
+  require_role "admin", :for => [:update, :destroy], 
+                        :unless => "current_user.id == Batch.find_by_id(params[:id]).user_id"
   # GET /batches
   # GET /batches.xml
   def index
