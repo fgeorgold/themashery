@@ -4,6 +4,7 @@ class BatchesControllerTest < ActionController::TestCase
   setup :activate_authlogic
   
   def setup
+    @fields = {:recipe_id => recipes(:lager).to_param, :brewed_on => "2008-01-01"}
     UserSession.create(users(:joe))
   end
   
@@ -26,7 +27,7 @@ class BatchesControllerTest < ActionController::TestCase
 
   test "should create batch" do
     assert_difference('Batch.count') do
-      post :create, :batch => batches(:one).attributes
+      post :create, :batch => @fields
     end
 
     assert_redirected_to batch_path(assigns(:batch))
