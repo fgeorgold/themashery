@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
   end
   
   def access_denied
+    flash[:notice] = "You're not allowed to do that."
     if logged_in?
       redirect_to account_path
     else
