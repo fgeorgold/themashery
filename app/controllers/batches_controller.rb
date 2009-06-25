@@ -1,4 +1,5 @@
 class BatchesController < ApplicationController
+  before_filter :require_user
   # GET /batches
   # GET /batches.xml
   def index
@@ -41,7 +42,7 @@ class BatchesController < ApplicationController
   # POST /batches.xml
   def create
     @batch = Batch.new(params[:batch])
-
+    @batch.user = current_user
     respond_to do |format|
       if @batch.save
         flash[:notice] = 'Batch was successfully created.'
@@ -58,7 +59,7 @@ class BatchesController < ApplicationController
   # PUT /batches/1.xml
   def update
     @batch = Batch.find(params[:id])
-
+    @batch.user = current_user
     respond_to do |format|
       if @batch.update_attributes(params[:batch])
         flash[:notice] = 'Batch was successfully updated.'

@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+  before_filter :require_user
   # GET /recipes
   # GET /recipes.xml
   def index
@@ -14,7 +15,6 @@ class RecipesController < ApplicationController
   # GET /recipes/1.xml
   def show
     @recipe = Recipe.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @recipe }
@@ -41,7 +41,6 @@ class RecipesController < ApplicationController
   # POST /recipes.xml
   def create
     @recipe = Recipe.new(params[:recipe])
-
     respond_to do |format|
       if @recipe.save
         flash[:notice] = 'Recipe was successfully created.'
@@ -58,7 +57,6 @@ class RecipesController < ApplicationController
   # PUT /recipes/1.xml
   def update
     @recipe = Recipe.find(params[:id])
-
     respond_to do |format|
       if @recipe.update_attributes(params[:recipe])
         flash[:notice] = 'Recipe was successfully updated.'

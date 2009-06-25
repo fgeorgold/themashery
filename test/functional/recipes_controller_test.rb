@@ -1,6 +1,18 @@
 require 'test_helper'
 
 class RecipesControllerTest < ActionController::TestCase
+  setup :activate_authlogic
+  
+  def setup
+    UserSession.create(users(:joe))
+  end
+  
+  test "should require user to log in" do
+    UserSession.find.destroy
+    get :index
+    assert_response :redirect
+  end
+    
   test "should get index" do
     get :index
     assert_response :success
