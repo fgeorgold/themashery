@@ -4,6 +4,7 @@ class RecipesControllerTest < ActionController::TestCase
   setup :activate_authlogic
   
   def setup
+    @fields = {:title => "sometitle", :ingredients => "someingredients", :directions => "somedirections"}
     UserSession.create(users(:joe))
   end
   
@@ -26,7 +27,7 @@ class RecipesControllerTest < ActionController::TestCase
 
   test "should create recipe" do
     assert_difference('Recipe.count') do
-      post :create, :recipe => recipes(:lager).attributes
+      post :create, :recipe => @fields
     end
 
     assert_redirected_to recipe_path(assigns(:recipe))
