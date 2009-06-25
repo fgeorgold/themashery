@@ -29,4 +29,14 @@ class BatchTest < ActiveSupport::TestCase
     @batch.recipe_id = 0
     assert !@batch.save, "Batch saved with an invalid recipe"
   end
+  
+  test "must have a user" do
+    @batch.user_id = nil
+    assert !@batch.save, "Batch saved without a user"
+  end
+  
+  test "user must exist and be valid" do
+    @batch.user_id = 0
+    assert !@batch.save, "Batch saved with an invalid user"
+  end
 end

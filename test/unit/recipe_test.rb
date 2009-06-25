@@ -25,4 +25,14 @@ class RecipeTest < ActiveSupport::TestCase
     @recipe.directions = nil
     assert !@recipe.save, "Recipe was saved without directions"
   end
+  
+  test "must have a user" do
+    @recipe.user_id = nil
+    assert !@recipe.save, "Batch saved without a user"
+  end
+  
+  test "user must exist and be valid" do
+    @recipe.user_id = 0
+    assert !@recipe.save, "Batch saved with an invalid user"
+  end
 end

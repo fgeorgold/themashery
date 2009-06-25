@@ -4,3 +4,4 @@ one:
   recipe: lager
   brewed_on: 2008-01-01
   notes: things went well
+  user: joe

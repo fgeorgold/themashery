@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090625134920) do
+ActiveRecord::Schema.define(:version => 20090625172324) do
 
   create_table "batches", :force => true do |t|
     t.integer  "recipe_id"
@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(:version => 20090625134920) do
     t.text     "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "recipes", :force => true do |t|
@@ -25,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20090625134920) do
     t.text     "directions"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "users", :force => true do |t|
