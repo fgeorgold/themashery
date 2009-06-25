@@ -1,19 +1,7 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-valid: &valid
+lager: 
   title: Tasty Lager
   ingredients: some grains
   directions: mash, ferment, keg
-
-no_title:
-  <<: *valid
-  title: null
-
-no_ingredients:
-  <<: *valid
-  ingredients: null
-
-no_directions:
-  <<: *valid
-  directions: null
 

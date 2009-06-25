@@ -14,30 +14,30 @@ class BatchesControllerTest < ActionController::TestCase
 
   test "should create batch" do
     assert_difference('Batch.count') do
-      post :create, :batch => batches(:valid).attributes
+      post :create, :batch => batches(:one).attributes
     end
 
     assert_redirected_to batch_path(assigns(:batch))
   end
 
   test "should show batch" do
-    get :show, :id => batches(:valid).to_param
+    get :show, :id => batches(:one).to_param
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, :id => batches(:valid).to_param
+    get :edit, :id => batches(:one).to_param
     assert_response :success
   end
 
   test "should update batch" do
-    put :update, :id => batches(:valid).to_param, :batch => { }
+    put :update, :id => batches(:one).to_param, :batch => batches(:one).attributes
     assert_redirected_to batch_path(assigns(:batch))
   end
 
   test "should destroy batch" do
     assert_difference('Batch.count', -1) do
-      delete :destroy, :id => batches(:valid).to_param
+      delete :destroy, :id => batches(:one).to_param
     end
 
     assert_redirected_to batches_path

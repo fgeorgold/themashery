@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090624183745) do
+ActiveRecord::Schema.define(:version => 20090625134920) do
 
   create_table "batches", :force => true do |t|
     t.integer  "recipe_id"
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(:version => 20090624183745) do
     t.string   "title"
     t.text     "ingredients"
     t.text     "directions"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "email",                             :null => false
+    t.string   "crypted_password",                  :null => false
+    t.string   "password_salt",                     :null => false
+    t.string   "persistence_token",                 :null => false
+    t.string   "perishable_token",                  :null => false
+    t.integer  "failed_login_count", :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
