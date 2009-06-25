@@ -7,7 +7,7 @@ class BatchesController < ApplicationController
   def index
     @own_batches = [Batch.all(:conditions => ["user_id = ?", current_user.id],
                              :order => "brewed_on DESC")].flatten.compact
-    @others_batches = [Batch.all(:conditions => ["user_id = ?", current_user.id],
+    @others_batches = [Batch.all(:conditions => ["user_id != ?", current_user.id],
                                  :order => "brewed_on DESC")].flatten.compact
     respond_to do |format|
       format.html # index.html.erb
