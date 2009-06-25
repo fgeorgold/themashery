@@ -5,8 +5,10 @@ class BatchesController < ApplicationController
   # GET /batches
   # GET /batches.xml
   def index
-    @batches = Batch.all(:order => "brewed_on DESC")
-
+    @own_batches = [Batch.all(:conditions => ["user_id = ?", current_user.id],
+                             :order => "brewed_on DESC")].flatten.compact
+    @others_batches = [Batch.all(:conditions => ["user_id = ?", current_user.id],
+                                 :order => "brewed_on DESC")].flatten.compact
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @batches }

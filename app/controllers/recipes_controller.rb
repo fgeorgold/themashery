@@ -5,8 +5,9 @@ class RecipesController < ApplicationController
   # GET /recipes
   # GET /recipes.xml
   def index
-    @recipes = Recipe.all
-
+    @own_recipes = [Recipe.all(:conditions => ["user_id = ?", current_user.id])].flatten.compact
+    @others_recipes = [Recipe.all(:conditions => ["user_id != ?", current_user.id])].flatten.compact
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @recipes }

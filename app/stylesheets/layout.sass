@@ -22,5 +22,16 @@ textarea
   :width 30em
   :height 10em
 
-ul#recipes, ul#batches
-  +no-bullets
+#recipes, #batches
+  ul
+    +no-bullets
+  :overflow hidden
+  #batch-list, #recipe-list
+    :float left
+    :border solid 1px black
+    :position relative
+    :display inline
+    :margin-left 10px
+    :margin-right 10px
+    .link
+      :text-align center

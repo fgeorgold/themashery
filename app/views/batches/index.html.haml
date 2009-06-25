@@ -1,16 +1,21 @@
 %h2 Batches
-  
-%ul#batches
-  - @batches.each do |batch|
-    %li
-      = link_to h(batch.recipe.title), batch.recipe
-      started on
-      = h batch.brewed_on
-      = link_to 'Show', batch
-      |
-      = link_to 'Edit', edit_batch_path(batch)
-      |
-      = link_to 'Remove', batch, :confirm => 'Are you sure?', :method => :delete
 
-%br
-= link_to 'New batch', new_batch_path
+#batches
+  #batch-list
+    %ul
+      %h4 My Batches:
+      -@own_batches.each do |batch|
+        %li
+          = h batch.title
+          = link_to 'Show', batch
+          = link_to 'Edit', edit_batch_path(batch)
+          = link_to 'Delete', batch, :confirm => 'Are you sure?', :method => :delete
+    .link= link_to 'New batch', new_batch_path
+  #batch-list
+    %ul
+      %h4 Other Brewers:
+      -@others_batches.each do |batch|
+        %li
+          = h batch.title
+          = link_to 'Show', batch
+

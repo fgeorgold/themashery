@@ -1,12 +1,22 @@
-%h2 Recipes
+#content-header
+  %h2 Recipes
 
-%ul#recipes
-  -@recipes.each do |recipe|
-    %li
-      = h recipe.title
-      = link_to 'Show', recipe
-      = link_to 'Edit', edit_recipe_path(recipe)
-      = link_to 'Delete', recipe, :confirm => 'Are you sure?', :method => :delete
+#recipes
+  #recipes-left
+    %ul
+      %h4 My Recipes:
+      -@own_recipes.each do |recipe|
+        %li
+          = h recipe.title
+          = link_to 'Show', recipe
+          = link_to 'Edit', edit_recipe_path(recipe)
+          = link_to 'Delete', recipe, :confirm => 'Are you sure?', :method => :delete
+    .link= link_to 'New recipe', new_recipe_path
+  #recipes-right
+    %ul
+      %h4 Other Brewers:
+      -@others_recipes.each do |recipe|
+        %li
+          = h recipe.title
+          = link_to 'Show', recipe
 
-%br
-= link_to 'New recipe', new_recipe_path
